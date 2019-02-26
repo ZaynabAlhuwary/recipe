@@ -46,6 +46,7 @@ public class OnloadData implements ApplicationListener<ContextRefreshedEvent> {
         perfectGuacamole.setDescription("The Best guacamole! So easy to make with ripe avocados!");
         perfectGuacamole.setDifficulty(Difficulty.EASY);
         perfectGuacamole.setPrepTime(15);
+        perfectGuacamole.setCookTime(20);
         perfectGuacamole.setUrl("https://www.simplyrecipes.com/recipes/perfect_guacamole/");
         perfectGuacamole.setUrl("https://www.simplyrecipes.com/recipes/chicknWithRice/");
         perfectGuacamole.setDirections("These are Chickn With Rice Direction For Test");

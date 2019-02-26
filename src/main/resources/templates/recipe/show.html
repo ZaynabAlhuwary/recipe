@@ -36,12 +36,7 @@
                                 <h5>Category</h5>
                             </div>
                             <div class="col-md-9">
-                                <!--<ul>
-                                     &lt;!&ndash;th:each="category : ${recipe.category}"&ndash;&gt;
-                                    <li th:text="${recipe.category}">cat three
-                                    </li>
-                                </ul>-->
-                                <p th:text="${(recipe.category.getDescription())}">30 min</p>
+                               <p th:text="${(recipe.category.getDescription())}">30 min</p>
                             </div>
                         </div>
                         <div class="row">
@@ -65,22 +60,7 @@
                             <div class="col-md-3">
                                 <p th:text="${(recipe.cookTime  +  '  Min')}">30 min</p>
                             </div>
-                           <!-- <div class="col-md-3">
-                                <h5>Servings:</h5>
-                            </div>
-                            <div class="col-md-3">
-                                <p th:text="${recipe.servings}">4</p>
-                            </div>-->
                         </div>
-                      <!--  <div class="row">
-                            <div class="col-md-3">
-                                <h5>Source:</h5>
-                            </div>
-                            <div class="col-md-6">
-                                <p th:text="${recipe.source}"></p>
-                            </div>
-
-                        </div>-->
                         <div class="row">
                             <div class="col-md-3">
                                 <h5>URL:</h5>
@@ -91,8 +71,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="panel panel-primary">
-                    <div class="panel-heading" style="background-color: #3c763d;">
+                <div class="panel panel-primary" th:if="${!recipe.flag}">
+                    <div class="panel-heading" style="background-color: #3c763d;" >
+
                         <div class="row">
                             <div class="col-md-11 ">
                                 <h1 class="panel-title">Ingredients</h1>

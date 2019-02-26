@@ -6,6 +6,8 @@
 package recipe.domain;
 
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 
@@ -18,7 +20,8 @@ public class Note extends Base{
     @Lob
     private String recipeNotes;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Recipe recipe;
 
 }

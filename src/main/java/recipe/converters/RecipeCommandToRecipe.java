@@ -45,18 +45,10 @@ public class RecipeCommandToRecipe implements Converter<RecipeCommand,Recipe> {
         recipe.setDescription(recipeCmd.getDescription());
         recipe.setDifficulty(recipeCmd.getDifficulty());
         recipe.setDirections(recipeCmd.getDirections());
-       /* recipe.setServings(recipeCmd.getServings());
-        recipe.setSource(recipeCmd.getSource());*/
+        recipe.setFlag(recipeCmd.isFlag());
         recipe.setUrl(recipeCmd.getUrl());
         recipe.setNote(notesConverter.convert(recipeCmd.getNote()));
         recipe.setCategory(categoryConverter.convert(recipeCmd.getCategoryCommand()));
-
-       // if (recipeCmd.getCategories() != null && recipeCmd.getCategories().size() > 0){
-       /* if(null != recipeCmd.getSelectedCategories()){
-            recipeCmd.setCategories(recipeCmd.getSelectedCategory());
-            recipeCmd.getCategories()
-                    .forEach( category -> recipe.getCategories().add(categoryConverter.convert(category)));
-        }*/
 
         if (recipeCmd.getIngredients() != null && recipeCmd.getIngredients().size() > 0){
             recipeCmd.getIngredients()

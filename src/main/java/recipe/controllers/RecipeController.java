@@ -63,10 +63,6 @@ public class RecipeController {
     @GetMapping("recipe/new")
     public String newRecipe(Model model){
         RecipeCommand recipeCommand = new RecipeCommand();
-       /* if (categoryService.getCategories() != null && categoryService.getCategories().size() > 0){
-            categoryService.getCategories()
-                    .forEach((Category category) -> recipeCommand.getCategoryCommand());
-        }*/
         if (ingredientService.getIngredient() != null && ingredientService.getIngredient().size() > 0){
             ingredientService.getIngredient()
                     .forEach((Ingredient ingredient) -> recipeCommand.getIngredients()
@@ -75,6 +71,7 @@ public class RecipeController {
         recipeCommand.setCategoryCommand(recipeCommand.getCategoryCommand());
         recipeCommand.setCategories(categoryService.getCommandCategories());
         recipeCommand.setIngredients(recipeCommand.getIngredients());
+        recipeCommand.setFlag(true);
         model.addAttribute("recipe",recipeCommand );
         return "recipe/recipeform";
     }

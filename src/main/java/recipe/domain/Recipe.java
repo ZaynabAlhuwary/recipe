@@ -21,10 +21,9 @@ public class Recipe extends Base {
     private String description;
     private Integer cookTime;
     private Integer prepTime;
-    /*private Integer servings;
-    private String source;*/
     private String url;
     private String directions;
+    private boolean flag ;
 
 
     @OneToMany(fetch = FetchType.EAGER,cascade =  CascadeType.ALL,mappedBy = "recipe")
@@ -36,13 +35,9 @@ public class Recipe extends Base {
     @Enumerated(EnumType.STRING)
     private Difficulty difficulty;
 
-    /*@ManyToMany
-    @JoinTable(name = "recipe_category",
-               joinColumns = @JoinColumn(name = "recipe_id"),
-               inverseJoinColumns = @JoinColumn(name = "category_id"))*/
     @ManyToOne
     @JoinColumn(name="category_id")
-    private Category category; //= new HashSet<>();
+    private Category category;
 
     public void setNote(Note note) {
         if (note != null) {
@@ -57,4 +52,7 @@ public class Recipe extends Base {
         ingredient.setRecipe(this);
     }
 
+    public void setFlag(boolean flag){
+        this.flag = true;
+    }
 }

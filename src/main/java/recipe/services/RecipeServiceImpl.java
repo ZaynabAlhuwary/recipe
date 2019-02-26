@@ -101,13 +101,8 @@ public class RecipeServiceImpl implements RecipeService{
     @Transactional
     public RecipeCommand saveRecipeCommand(RecipeCommand command) {
 
-//        System.out.println("Command   "+command.getCategoryCommand().getDescription());
         Recipe detachedRecipe = this.recipeCommandToRecipe.convert(command);
-//        System.out.println("detachedRecipe"+detachedRecipe.getCategory().getDescription());
-
         Recipe savedRecipe    = this.recipeRepository.save(detachedRecipe);
-       // log.debug("Saved Recipe Id : "+ savedRecipe.getCategories());
-//        System.out.println("savedRecipe   "+savedRecipe.getCategory().getDescription());
         savedRecipe.setCategory(categoryCommandToCategory.convert(command.getCategoryCommand()));
         return this.recipeToRecipeCommand.convert(savedRecipe);
 

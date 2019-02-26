@@ -41,7 +41,7 @@
                                 </div>
                                 <!--category-->
                                 <div class="col-md-3 form-group">
-                                    <ul>
+                                    <!--<ul>
                                         <li th:each="category : ${recipe.categories}">
                                             <input type="checkbox"
                                                    th:field="*{commndCat}"
@@ -49,7 +49,14 @@
 
                                             <label  th:text="${category.getDescription()}"></label>
                                         </li>
-                                    </ul>
+                                    </ul>-->
+
+                                    <select th:field="*{commndCat}">
+                                        <option
+                                                th:each="category : ${recipe.categories}"
+                                                th:value="${category.getId() +',' +category.getDescription()}"
+                                                th:text="${category.getDescription()}" ></option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="row">
@@ -96,7 +103,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="panel panel-primary">
+                    <div class="panel panel-primary" th:if="${!recipe.flag}">
                         <div class="panel-heading" style="background-color: #3c763d;">
                             <div class="row">
                                 <div class="col-md-11 ">
