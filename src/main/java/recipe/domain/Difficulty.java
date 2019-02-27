@@ -6,5 +6,5 @@
 package recipe.domain;
 
 public enum Difficulty {
-    EASY,MODEREATE,KIND_OF_HARD,HARD
+    EASY,MODEREATE,HARD
 }
