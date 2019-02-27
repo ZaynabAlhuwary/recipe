@@ -10,9 +10,6 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 import recipe.domain.*;
-import recipe.embeddables.Address;
-import recipe.embeddables.User;
-import recipe.embeddablesRepo.UserRepository;
 import recipe.repositories.RecipeRepository;
 import recipe.services.*;
 
@@ -28,16 +25,14 @@ public class OnloadData implements ApplicationListener<ContextRefreshedEvent> {
     private IngredientService ingredientService;
     private UnitOfMeasureService unitOfMeasureService;
     private CategoryService categoryService;
-    private UserRepository userRepository;
 
     @Autowired
-    public OnloadData(RecipeRepository recipeRepository, CategoryService categoryService,  IngredientService ingredientService,NotesService notesService ,UnitOfMeasureService unitOfMeasureService,UserRepository userRepository) {
+    public OnloadData(RecipeRepository recipeRepository, CategoryService categoryService,  IngredientService ingredientService,NotesService notesService ,UnitOfMeasureService unitOfMeasureService) {
         this.recipeRepository = recipeRepository;
         this.categoryService = categoryService;
         this.notesService = notesService;
         this.ingredientService = ingredientService;
         this.unitOfMeasureService = unitOfMeasureService;
-        this.userRepository = userRepository;
     }
 
     private  List<Recipe> loadData() {
@@ -128,13 +123,6 @@ public class OnloadData implements ApplicationListener<ContextRefreshedEvent> {
         List<Recipe> recipes = new ArrayList<Recipe>();
         recipes.add(perfectGuacamole);
         recipes.add(chicknWithRice);
-
-        // test Embeddale Class
-        Address address = new Address("Egypt");
-
-        User user = new User("zaynab",address);
-
-        userRepository.save(user);
 
         return recipes;
 
