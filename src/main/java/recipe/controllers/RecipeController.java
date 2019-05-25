@@ -5,6 +5,7 @@
 package recipe.controllers;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -64,13 +65,13 @@ public class RecipeController {
     @GetMapping("recipe/new")
     public String newRecipe(Model model){
         RecipeCommand recipeCommand = new RecipeCommand();
-        if(ingredientService.getIngredient() != null && ingredientService.getIngredient().size() > 0)
+       /* if(ingredientService.getIngredient() != null && ingredientService.getIngredient().size() > 0)
         {
             ingredientService.getIngredient()
                     .forEach((Ingredient ingredient) -> recipeCommand.getIngredients()
                             .add(ingredientToIngredientCommand.convert(ingredient)));
         }
-        recipeCommand.setCategoryCommand(recipeCommand.getCategoryCommand());
+       */ recipeCommand.setCategoryCommand(recipeCommand.getCategoryCommand());
         recipeCommand.setCategories(categoryService.getCommandCategories());
         recipeCommand.setIngredients(recipeCommand.getIngredients());
         recipeCommand.setFlag(true);

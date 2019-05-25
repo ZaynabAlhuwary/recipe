@@ -47,7 +47,7 @@ public class IngredientServiceImpl implements IngredientService {
 
     @Override
     public  Optional<Ingredient> getIngredientById(Long id){
-        Optional<Ingredient> ingredient = this.ingredientRepository.findById(id);
+        Optional<Ingredient> ingredient = ingredientRepository.findById(id);
         return ingredient;
     }
 
