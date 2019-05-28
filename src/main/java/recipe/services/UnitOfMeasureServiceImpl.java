@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import recipe.commands.UnitOfMeasureCommand;
 import recipe.converters.UnitOfMeasureToUnitOfMeasureCommand;
 import recipe.domain.UnitOfMeasure;
+import recipe.exceptions.NotFoundException;
 import recipe.repositories.UnitOfMeasureRepository;
 
 import java.util.HashSet;
@@ -40,8 +41,7 @@ public class UnitOfMeasureServiceImpl implements UnitOfMeasureService {
 
     @Override
     public Optional<UnitOfMeasure> findByUom(String uom) {
-        Optional<UnitOfMeasure> unitOfMeasure  = unitOfMeasureRepo.findByUom(uom);
-        return unitOfMeasure;
+       return Optional.ofNullable(unitOfMeasureRepo.findByUom(uom).orElseThrow(() -> new NotFoundException("Unit Not Found With " + uom)));
     }
 
     @Override

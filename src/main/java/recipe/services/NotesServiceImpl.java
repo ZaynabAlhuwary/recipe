@@ -7,6 +7,7 @@ package recipe.services;
 
 import org.springframework.stereotype.Service;
 import recipe.domain.Note;
+import recipe.exceptions.NotFoundException;
 import recipe.repositories.NoteRepository;
 
 import java.util.List;
@@ -28,13 +29,11 @@ public class NotesServiceImpl implements NotesService {
 
     @Override
     public Optional<Note> getNoteById(Long id){
-        Optional<Note> note = this.noteRepository.findById(id);
-        return note;
+       return Optional.ofNullable(noteRepository.findById(id).orElseThrow(()->new NotFoundException("Note Not Found with "+id)));
     }
 
     @Override
     public List<Note> getNotes(){
-        List<Note> notes = (List<Note>) this.noteRepository.findAll();
-        return notes;
+        return (List<Note>) noteRepository.findAll();
     }
 }

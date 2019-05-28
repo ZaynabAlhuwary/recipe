@@ -11,10 +11,12 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MockMvcBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import recipe.commands.RecipeCommand;
 import recipe.converters.CategoryToCategoryCommand;
 import recipe.converters.IngredientToIngredientCommand;
 import recipe.domain.Recipe;
+import recipe.exceptions.NotFoundException;
 import recipe.services.CategoryService;
 import recipe.services.IngredientService;
 import recipe.services.RecipeService;
@@ -116,6 +118,28 @@ public class RecipeControllerTest {
         mockMvc.perform(get("/recipe/1/delete"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/"));
+
+    }
+
+    @Test(expected = NotFoundException.class)
+    public void handelNotFoundExc() {
+        when(recipeService.findRecipeById(anyLong())).thenThrow(NotFoundException.class);
+        recipeService.findRecipeById(1l);
+    }
+
+    @Test
+    public void shouldHandelNotFoundExc() throws Exception {
+        when(recipeService.findRecipeById(anyLong())).thenThrow(NotFoundException.class);
+        mockMvc.perform(get("/recipe/"+2l+"/show"))
+                .andExpect(status().isNotFound());
+               // .andExpect(view().name("404error"));
+    }
+
+    @Test
+    public void shouldRaiseNumberFormatEX() throws Exception {
+
+       mockMvc.perform(get("/recipe/test/show"))
+                .andExpect(status().isBadRequest());
 
     }
 }

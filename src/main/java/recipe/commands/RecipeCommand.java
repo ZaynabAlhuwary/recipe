@@ -7,8 +7,10 @@ package recipe.commands;
 
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.validator.constraints.URL;
 import recipe.domain.Difficulty;
 
+import javax.validation.constraints.NotBlank;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,9 +24,11 @@ import java.util.Set;
 @Slf4j
 public class RecipeCommand {
     private Long id;
+    @NotBlank
     private String description;
     private Integer prepTime;
     private Integer cookTime;
+    @URL
     private String url;
     private String directions;
     private Set<IngredientCommand> ingredients = new HashSet<IngredientCommand>();

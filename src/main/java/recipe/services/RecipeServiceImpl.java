@@ -15,6 +15,7 @@ import recipe.converters.RecipeToRecipeCommand;
 import recipe.domain.Category;
 import recipe.domain.Ingredient;
 import recipe.domain.Recipe;
+import recipe.exceptions.NotFoundException;
 import recipe.repositories.RecipeRepository;
 
 import java.util.HashSet;
@@ -76,7 +77,7 @@ public class RecipeServiceImpl implements RecipeService{
     public Recipe findRecipeById(Long id) {
         Optional<Recipe> recipeOptional = recipeRepository.findById(id);
         if(!recipeOptional.isPresent()){
-            throw new RuntimeException("Recipe Not Found By This Id: "+id);
+            throw new NotFoundException("Recipe Not Found By This Id: "+id);
         }
 
         return recipeOptional.get();
@@ -88,7 +89,13 @@ public class RecipeServiceImpl implements RecipeService{
      */
     @Override
     public Recipe findByDesc(String desc) {
-        return recipeRepository.findBydescription(desc).get();
+        Optional<Recipe> optionalRecipe = null;
+        optionalRecipe = recipeRepository.findBydescription(desc);
+
+        if(!optionalRecipe.isPresent()){
+            throw new NotFoundException("No Recipe With This description"+desc);
+        }
+        return optionalRecipe.get();
     }
 
 

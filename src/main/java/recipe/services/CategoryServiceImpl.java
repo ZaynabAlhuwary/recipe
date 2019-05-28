@@ -45,8 +45,8 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public  Optional<Category> getCategorieById(Long id){
-        Optional<Category> category = categoryRepository.findById(id);
-        return category;
+
+        return Optional.ofNullable(categoryRepository.findById(id).orElseThrow(() -> new NullPointerException("Category Not Found With Id " + id)));
     }
 
     @Override
