@@ -37,7 +37,7 @@ public class RecipeCommand {
     private CategoryCommand categoryCommand;
     private String commndCat;
     private Set<CategoryCommand> categories = new HashSet<>();
-    private String[] selectedCategories;
+  //  private String[] selectedCategories;
 
     private boolean flag;
 

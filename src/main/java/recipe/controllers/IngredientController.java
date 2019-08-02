@@ -70,7 +70,7 @@ public class IngredientController {
     public String saveOrUpdate(@ModelAttribute IngredientCommand command){
         IngredientCommand savedCommand = ingredientService.saveIngredientCommand(command);
 
-        savedCommand.setRecipeId(new Long(command.getRecipeId()));
+        savedCommand.setRecipeId(command.getRecipeId());
         return "redirect:/recipe/" + savedCommand.getRecipeId() + "/ingredient/" + savedCommand.getId() + "/show";
     }
 

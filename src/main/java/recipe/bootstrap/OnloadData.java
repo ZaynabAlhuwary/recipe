@@ -64,9 +64,9 @@ public class OnloadData implements ApplicationListener<ContextRefreshedEvent> {
 
         //Categories
         Optional<Category> Egyption =categoryService.findByDescription("Egyption");
-        Optional<Category> Italian =categoryService.findByDescription("Italian");
+      /*  Optional<Category> Italian =categoryService.findByDescription("Italian");
         Optional<Category> FastFood =categoryService.findByDescription("Fast Food");
-        Optional<Category> American=categoryService.findByDescription("American");
+        Optional<Category> American=categoryService.findByDescription("American")*/;
 
         perfectGuacamole.addIngredient(new Ingredient("avocados",new BigDecimal(2),ounce.get()));
         perfectGuacamole.addIngredient(new Ingredient("Kosher Salt",new BigDecimal(1/2),TablePoon.get()));
