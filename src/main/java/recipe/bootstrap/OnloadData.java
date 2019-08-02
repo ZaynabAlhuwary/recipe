@@ -86,7 +86,7 @@ public class OnloadData implements ApplicationListener<ContextRefreshedEvent> {
         Guacamolecat.add(American.get());
         Guacamolecat.add(FastFood.get());*/
 
-        perfectGuacamole.setCategory(Egyption.get());
+       // perfectGuacamole.setCategory(Egyption.get());
 
        /* perfectGuacamole.getCategories().add(Egyption.get());
         perfectGuacamole.getCategories().add(Italian.get());
@@ -130,7 +130,7 @@ public class OnloadData implements ApplicationListener<ContextRefreshedEvent> {
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-       log.debug(String.valueOf(loadData()));
-        recipeRepository.saveAll(loadData());
+      // log.debug(String.valueOf(loadData()));
+        //recipeRepository.saveAll(loadData());
     }
 }

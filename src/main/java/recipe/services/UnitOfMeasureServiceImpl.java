@@ -41,7 +41,8 @@ public class UnitOfMeasureServiceImpl implements UnitOfMeasureService {
 
     @Override
     public Optional<UnitOfMeasure> findByUom(String uom) {
-       return Optional.ofNullable(unitOfMeasureRepo.findByUom(uom).orElseThrow(() -> new NotFoundException("Unit Not Found With " + uom)));
+       return Optional.of(new UnitOfMeasure());
+               //Optional.ofNullable(unitOfMeasureRepo.findByUom(uom).orElseThrow(() -> new NotFoundException("Unit Not Found With " + uom)));
     }
 
     @Override
