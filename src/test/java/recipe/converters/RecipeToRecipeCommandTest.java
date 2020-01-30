@@ -42,6 +42,7 @@ public class RecipeToRecipeCommandTest {
         // when
         RecipeCommand recipeCommand = recipeToRecipeCommand.convert(recipe);
         assertNotNull(recipeCommand);
+        assertTrue(recipeCommand instanceof RecipeCommand);
 
 
     }

@@ -8,10 +8,11 @@ import java.util.Optional;
 import java.util.Set;
 
 public interface CategoryService {
+
     public Category saveCategory(Category category);
     public Set<Category> getCategories();
     public Set<CategoryCommand> getCommandCategories();
-    public Optional<Category> getCategorieById(Long id);
+    public Optional<Category> getCategoriesById(Long id);
     public Optional<Category> findByDescription(String desc);
 
 }

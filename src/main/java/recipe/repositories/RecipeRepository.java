@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
 
+@Repository
 public interface RecipeRepository extends CrudRepository<Recipe,Long>{
 
     Optional<Recipe> findBydescription(String  desc);

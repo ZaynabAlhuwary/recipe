@@ -31,6 +31,7 @@ import java.util.Set;
  */
 @Slf4j
 @Controller
+
 public class RecipeController {
 
     private RecipeService recipeService;

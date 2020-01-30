@@ -47,9 +47,11 @@ public class UnitOfMeasureServiceImpl implements UnitOfMeasureService {
 
     @Override
     public Optional<UnitOfMeasureCommand> findById(Long id) {
+
         Optional<UnitOfMeasure> unitOfMeasure  = unitOfMeasureRepo.findById(id);
         UnitOfMeasureCommand unitOfMeasureCommand = this.unitOfMeasureToUnitOfMeasureCommand.convert(unitOfMeasure.get());
         return Optional.ofNullable(unitOfMeasureCommand);
+
     }
 
     @Override

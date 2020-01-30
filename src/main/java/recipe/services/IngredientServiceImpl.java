@@ -61,6 +61,7 @@ public class IngredientServiceImpl implements IngredientService {
 
     @Override
     public IngredientCommand findByRecipeIdAndIngredientId(Long recipeId, Long ingredientId) {
+
         Optional<Recipe> recipeOptional = recipeRepository.findById(recipeId);
 
         if (!recipeOptional.isPresent()){
@@ -101,11 +102,12 @@ public class IngredientServiceImpl implements IngredientService {
                     .findFirst();
 
                 if(ingredientOptional.isPresent()){
+                    // Update The Ingredient Data.
                     Ingredient ingredientFound = ingredientOptional.get();
                     ingredientFound.setDescription(command.getDescription());
                     ingredientFound.setAmount(command.getAmount());
                 } else {
-                    //add new Ingredient
+                    //Add new Ingredient
                     Ingredient ingredient = ingredientCommandToIngredient.convert(command);
                     ingredient.setRecipe(recipe);
                     recipe.addIngredient(ingredient);

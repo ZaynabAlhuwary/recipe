@@ -115,7 +115,6 @@ private  List<Recipe> loadData() {
 
 
         @Override
-
         public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
             List<Recipe> recipes = loadData();
             recipeRepository.saveAll(recipes);

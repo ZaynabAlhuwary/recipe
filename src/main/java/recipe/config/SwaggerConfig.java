@@ -25,8 +25,8 @@ public class SwaggerConfig {
     }
 
     private ApiInfo apiEndPointsInfo() {
-        return new ApiInfoBuilder().title("Fruit Store API")
-                .description("Fruit Store API")
+        return new ApiInfoBuilder().title("Recipe Store API")
+                .description("Recipe Store API")
                 .contact(new Contact("Zaynab Osama", "test", "zaynabalhuwary1@gmail.com"))
                 .license("Apache 2.0")
                 .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")

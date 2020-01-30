@@ -23,7 +23,6 @@ public class Category extends Base {
 
     private String description;
 
-    /*@ManyToMany(mappedBy = "categories")*/
     @OneToMany(mappedBy = "category")
     private Set<Recipe> recipes ;
 

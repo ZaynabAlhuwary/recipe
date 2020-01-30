@@ -88,6 +88,7 @@ public class RecipeServiceImplTest {
         RecipeCommand returnedRecipeCommand = recipeService.findCommandById(anyLong());
 
         assertNotNull(returnedRecipeCommand);
+        assertEquals(recipeCommand.getId(),returnedRecipeCommand.getId());
        verify(recipeRepository,times(1)).findById(anyLong());
     }
 

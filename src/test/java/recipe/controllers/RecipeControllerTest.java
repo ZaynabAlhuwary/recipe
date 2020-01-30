@@ -48,10 +48,6 @@ public class RecipeControllerTest {
 
     MockMvc mockMvc;
 
-   /* @Mock
-    Model model;*/
-
-
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);

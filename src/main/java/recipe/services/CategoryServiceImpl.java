@@ -41,11 +41,11 @@ public class CategoryServiceImpl implements CategoryService {
         Set<Category> categories = new HashSet<Category>();
         categoryRepository.findAll().iterator().forEachRemaining(categories::add);
         return categories;
+
     }
 
     @Override
-    public  Optional<Category> getCategorieById(Long id){
-
+    public  Optional<Category> getCategoriesById(Long id){
         return Optional.ofNullable(categoryRepository.findById(id).orElseThrow(() -> new NullPointerException("Category Not Found With Id " + id)));
     }
 
