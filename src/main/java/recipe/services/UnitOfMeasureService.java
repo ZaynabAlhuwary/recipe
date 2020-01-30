@@ -16,6 +16,7 @@ public interface UnitOfMeasureService {
 
     public void saveUnit(UnitOfMeasure unitOfMeasure);
     Optional<UnitOfMeasure> findByUom(String uom);
+    Optional<UnitOfMeasureCommand> findById(Long id);
     Set<UnitOfMeasure> findAllUnitOfMeasures();
     Set<UnitOfMeasureCommand> getAllCommandUoms();
 }

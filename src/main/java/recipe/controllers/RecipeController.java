@@ -67,13 +67,7 @@ public class RecipeController {
     @GetMapping("recipe/new")
     public String newRecipe(Model model){
         RecipeCommand recipeCommand = new RecipeCommand();
-       /* if(ingredientService.getIngredient() != null && ingredientService.getIngredient().size() > 0)
-        {
-            ingredientService.getIngredient()
-                    .forEach((Ingredient ingredient) -> recipeCommand.getIngredients()
-                            .add(ingredientToIngredientCommand.convert(ingredient)));
-        }
-       */ recipeCommand.setCategoryCommand(recipeCommand.getCategoryCommand());
+        recipeCommand.setCategoryCommand(recipeCommand.getCategoryCommand());
         recipeCommand.setCategories(categoryService.getCommandCategories());
         recipeCommand.setIngredients(recipeCommand.getIngredients());
         recipeCommand.setFlag(true);

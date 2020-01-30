@@ -52,7 +52,7 @@ public class IngredientController {
     }
 
     @GetMapping("recipe/{recipeId}/ingredient/new")
-    public String newRecipe(@PathVariable String recipeId, Model model){
+    public String newIngrediant(@PathVariable String recipeId, Model model){
 
         RecipeCommand recipeCommand = recipeService.findCommandById(Long.valueOf(recipeId));
          //return back parent id for hidden form property
@@ -60,7 +60,7 @@ public class IngredientController {
         ingredientCommand.setRecipeId(Long.valueOf(recipeId));
         model.addAttribute("ingredient", ingredientCommand);
 
-        ingredientCommand.setUnitOfMeasure(new UnitOfMeasureCommand());
+       // ingredientCommand.setUnitOfMeasure(new UnitOfMeasureCommand());
 
         model.addAttribute("uomList",  unitOfMeasureService.getAllCommandUoms());
 
@@ -71,7 +71,7 @@ public class IngredientController {
         IngredientCommand savedCommand = ingredientService.saveIngredientCommand(command);
 
         savedCommand.setRecipeId(command.getRecipeId());
-        return "redirect:/recipe/" + savedCommand.getRecipeId() + "/ingredient/" + savedCommand.getId() + "/show";
+        return "redirect:/recipe/" + savedCommand.getRecipeId() + "/ingredients";
     }
 
     @GetMapping("recipe/{recipeId}/ingredient/{id}/update")

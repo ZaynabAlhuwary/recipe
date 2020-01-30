@@ -9,15 +9,19 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 import recipe.commands.IngredientCommand;
+import recipe.commands.UnitOfMeasureCommand;
 import recipe.domain.Ingredient;
+import recipe.services.UnitOfMeasureService;
 
 @Component
 public class IngredientCommandToIngredient implements Converter<IngredientCommand, Ingredient> {
 
     private UnitOfMeasureCommandToUnitOfMeasure uomConverter;
+    private UnitOfMeasureService unitOfMeasureService;
 
-    public IngredientCommandToIngredient(UnitOfMeasureCommandToUnitOfMeasure uomConverter) {
+    public IngredientCommandToIngredient(UnitOfMeasureCommandToUnitOfMeasure uomConverter, UnitOfMeasureService unitOfMeasureService) {
         this.uomConverter = uomConverter;
+        this.unitOfMeasureService = unitOfMeasureService;
     }
 
     @Nullable
@@ -29,7 +33,8 @@ public class IngredientCommandToIngredient implements Converter<IngredientComman
         final  Ingredient ingredient= new Ingredient();
         ingredient.setId(ingredientCmd.getId());
         ingredient.setDescription(ingredientCmd.getDescription());
-        ingredient.setUnitOfMeasure(uomConverter.convert(ingredientCmd.getUnitOfMeasure()));
+        UnitOfMeasureCommand unitOfMeasureCommand = (this.unitOfMeasureService.findById(ingredientCmd.getUnitOfMeasureId())).get();
+        ingredient.setUnitOfMeasure(uomConverter.convert(unitOfMeasureCommand));
         ingredient.setAmount(ingredientCmd.getAmount());
 
         return ingredient;

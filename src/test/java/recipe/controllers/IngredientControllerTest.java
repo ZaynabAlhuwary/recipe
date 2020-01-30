@@ -1,6 +1,5 @@
 package recipe.controllers;
 
-import jdk.Exported;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -89,7 +88,7 @@ public class IngredientControllerTest {
                         .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         )
                 .andExpect(status().is3xxRedirection())
-                .andExpect(view().name("redirect:/recipe/1/ingredient/1/show"));
+                .andExpect(view().name("redirect:/recipe/1/ingredients"));
     }
 
     @Test

@@ -20,22 +20,22 @@ import java.util.*;
 @Component
 public class OnloadData implements ApplicationListener<ContextRefreshedEvent> {
 
-    private RecipeRepository recipeRepository;
-    private NotesService notesService;
-    private IngredientService ingredientService;
-    private UnitOfMeasureService unitOfMeasureService;
-    private CategoryService categoryService;
+private RecipeRepository recipeRepository;
+private NotesService notesService;
+private IngredientService ingredientService;
+private UnitOfMeasureService unitOfMeasureService;
+private CategoryService categoryService;
 
-    @Autowired
-    public OnloadData(RecipeRepository recipeRepository, CategoryService categoryService,  IngredientService ingredientService,NotesService notesService ,UnitOfMeasureService unitOfMeasureService) {
+@Autowired
+public OnloadData(RecipeRepository recipeRepository, CategoryService categoryService,  IngredientService ingredientService,NotesService notesService ,UnitOfMeasureService unitOfMeasureService) {
         this.recipeRepository = recipeRepository;
         this.categoryService = categoryService;
         this.notesService = notesService;
         this.ingredientService = ingredientService;
         this.unitOfMeasureService = unitOfMeasureService;
-    }
+        }
 
-    private  List<Recipe> loadData() {
+private  List<Recipe> loadData() {
 
         Recipe perfectGuacamole = new Recipe();
         perfectGuacamole.setDescription("The Best guacamole! So easy to make with ripe avocados!");
@@ -64,9 +64,9 @@ public class OnloadData implements ApplicationListener<ContextRefreshedEvent> {
 
         //Categories
         Optional<Category> Egyption =categoryService.findByDescription("Egyption");
-      /*  Optional<Category> Italian =categoryService.findByDescription("Italian");
+        Optional<Category> Italian =categoryService.findByDescription("Italian");
         Optional<Category> FastFood =categoryService.findByDescription("Fast Food");
-        Optional<Category> American=categoryService.findByDescription("American")*/;
+        Optional<Category> American=categoryService.findByDescription("American");
 
         perfectGuacamole.addIngredient(new Ingredient("avocados",new BigDecimal(2),ounce.get()));
         perfectGuacamole.addIngredient(new Ingredient("Kosher Salt",new BigDecimal(1/2),TablePoon.get()));
@@ -80,32 +80,17 @@ public class OnloadData implements ApplicationListener<ContextRefreshedEvent> {
         chicknWithRice.addIngredient(new Ingredient("oil",BigDecimal.valueOf(1/4),cup.get()));
         chicknWithRice.addIngredient(new Ingredient("red onion",BigDecimal.valueOf(1/4),TeasPoon.get()));
 
-        /*Set<Category> Guacamolecat = new HashSet<>();
-        Guacamolecat.add(Egyption.get());
-        Guacamolecat.add(Italian.get());
-        Guacamolecat.add(American.get());
-        Guacamolecat.add(FastFood.get());*/
+        perfectGuacamole.setCategory(Egyption.get());
 
-       // perfectGuacamole.setCategory(Egyption.get());
-
-       /* perfectGuacamole.getCategories().add(Egyption.get());
-        perfectGuacamole.getCategories().add(Italian.get());
-        perfectGuacamole.getCategories().add(American.get());
-        perfectGuacamole.getCategories().add(FastFood.get());
-        perfectGuacamole.getCategories().add(Egyption.get());*/
 
         //second Ingredient Catregories
 
         chicknWithRice.setCategory(Egyption.get());
-       /* chicknWithRice.getCategories().add(Italian.get());
-        chicknWithRice.getCategories().add(American.get());
-        chicknWithRice.getCategories().add(FastFood.get());
-        chicknWithRice.getCategories().add(Egyption.get());*/
 
         Note guacamoleNote = new Note();
         guacamoleNote.setRecipeNotes("The trick to making perfect guacamole is using ripe avocados that are just the right amount of ripeness. " +
-                "Not ripe enough and the avocado will be hard and tasteless. " +
-                "Too ripe and the taste will be off.");
+        "Not ripe enough and the avocado will be hard and tasteless. " +
+        "Too ripe and the taste will be off.");
 
         guacamoleNote.setRecipe(perfectGuacamole);
         perfectGuacamole.setNote(guacamoleNote);
@@ -115,7 +100,7 @@ public class OnloadData implements ApplicationListener<ContextRefreshedEvent> {
 
         Note chicknWithRiceNotes = new Note();
         guacamoleNote.setRecipeNotes("The trick to making perfect chicknWithRice is using ripe rice " +
-                "that are just the right amount of ripeness. Not ripe enough and ");
+        "that are just the right amount of ripeness. Not ripe enough and ");
 
         chicknWithRiceNotes.setRecipe(chicknWithRice);
         chicknWithRice.setNote(chicknWithRiceNotes);
@@ -126,11 +111,13 @@ public class OnloadData implements ApplicationListener<ContextRefreshedEvent> {
 
         return recipes;
 
-    }
+        }
 
-    @Override
-    public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-      // log.debug(String.valueOf(loadData()));
-        //recipeRepository.saveAll(loadData());
-    }
+
+        @Override
+
+        public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
+            List<Recipe> recipes = loadData();
+            recipeRepository.saveAll(recipes);
+        }
 }

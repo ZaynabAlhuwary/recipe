@@ -104,9 +104,6 @@ public class IngredientServiceImpl implements IngredientService {
                     Ingredient ingredientFound = ingredientOptional.get();
                     ingredientFound.setDescription(command.getDescription());
                     ingredientFound.setAmount(command.getAmount());
-                   /* ingredientFound.setUnitOfMeasure(unitOfMeasureRepository
-                            .findById(command.getUnitOfMeasure().getId())
-                            .orElseThrow(() -> new RuntimeException("UOM NOT FOUND")));*/
                 } else {
                     //add new Ingredient
                     Ingredient ingredient = ingredientCommandToIngredient.convert(command);
@@ -117,18 +114,22 @@ public class IngredientServiceImpl implements IngredientService {
             Recipe savedRecipe = recipeRepository.save(recipe);
 
             Optional<Ingredient> savedIngredientOptional = savedRecipe.getIngredients().stream()
-                    .filter(recipeIngredients -> recipeIngredients.getId().equals(command.getId()))
+                    .filter(recipeIngredients -> recipeIngredients.getDescription().equals(command.getDescription()))
                     .findFirst();
 
             if(!savedIngredientOptional.isPresent()){
                 savedIngredientOptional = savedRecipe.getIngredients().stream()
                         .filter(recipeIngredients -> recipeIngredients.getDescription().equals(command.getDescription()))
                         .filter(recipeIngredients -> recipeIngredients.getAmount().equals(command.getAmount()))
-                        .filter(recipeIngredients -> recipeIngredients.getUnitOfMeasure().getId().equals(command.getUnitOfMeasure().getId()))
+                        .filter(recipeIngredients -> recipeIngredients.getUnitOfMeasure().getId().equals(command.getUnitOfMeasureId()))
                         .findFirst();
+
             }
 
-            return ingredientToIngredientCommand.convert(savedIngredientOptional.get());
+
+            IngredientCommand  ingredientCommand = ingredientToIngredientCommand.convert(savedIngredientOptional.get());
+            ingredientCommand.setRecipeId(savedRecipe.getId());
+            return ingredientCommand;
         }
 
     }

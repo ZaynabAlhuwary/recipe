@@ -26,7 +26,7 @@
                 <div class="pannel-group">
                     <div class="panel panel-primary">
                         <div class="panel-heading"  style="background-color: #3c763d;">
-                            <h1 class="panel-title">Edit Recipe Information</h1>
+                            <h1 class="panel-title">Recipe Information</h1>
                         </div>
                         <div class="panel-body">
                             <div class="row">
@@ -41,15 +41,6 @@
                                 </div>
                                 <!--category-->
                                 <div class="col-md-3 form-group">
-                                    <!--<ul>
-                                        <li th:each="category : ${recipe.categories}">
-                                            <input type="checkbox"
-                                                   th:field="*{commndCat}"
-                                                   th:value="${category.getId() +',' +category.getDescription()}" />
-
-                                            <label  th:text="${category.getDescription()}"></label>
-                                        </li>
-                                    </ul>-->
 
                                     <select th:field="*{commndCat}">
                                         <option
@@ -93,14 +84,20 @@
                             </div>
                         </div>
                     </div>
+                    <!-- EDIT INGREDIANT-->
                     <div class="panel panel-primary" th:if="${!recipe.flag}">
                         <div class="panel-heading" style="background-color: #3c763d;">
                             <div class="row">
                                 <div class="col-md-11 ">
                                     <h1 class="panel-title">Ingredients</h1>
                                 </div>
+                                <!-- if new recipe don'tshow view-->
                                 <div class="col-md-1">
                                     <a class="btn btn-default" style=" float: right;" href="#" th:href="@{'/recipe/' + ${recipe.id} + '/ingredients'}" role="button">View</a>
+                                </div>
+                                <div class="col-md-1">
+                                    <a class="btn btn-default" style=" float: right;" href="#"
+                                       th:href="@{'/recipe/' + ${recipe.id} + '/ingredient/new'}" role="button">Add</a>
                                 </div>
                             </div>
                         </div>
@@ -110,7 +107,6 @@
                                     <ul th:if="${not #lists.isEmpty(recipe.ingredients)}">
                                         <li th:each="ingredient : ${recipe.ingredients}"
                                             th:text="${(ingredient.getAmount() +
-                                        ' ' + ingredient.unitOfMeasure.getDescription() +
                                         ' - ' + ingredient.getDescription())}">
                                         </li>
                                     </ul>

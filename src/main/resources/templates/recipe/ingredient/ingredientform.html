@@ -26,7 +26,7 @@
                 <div class="pannel-group">
                     <div class="panel panel-primary">
                         <div class="panel-heading" style="background-color: #3c763d;">
-                            <h1 class="panel-title">Edit Ingredient Information</h1>
+                            <h1 class="panel-title">Ingredient Information</h1>
                         </div>
                         <div class="panel-body">
 
@@ -44,11 +44,15 @@
 
                                 <div class="col-md-3 form-group">
                                     <label>UOM:</label>
-                                    <select class="form-control" name="uom.id">
+                                    <select class="form-control" name="uom.id" th:field="*{unitOfMeasureId}">
                                         <option th:each="uomEach : ${uomList}"
                                                 th:value="${uomEach.id}"
-                                                th:selected="${uomEach.id.equals(ingredient.unitOfMeasure.id)}"
-                                                th:text="${uomEach.description}">Each</option>
+                                                th:selected="${uomEach.id.equals(ingredient.unitOfMeasureId)}"
+                                                th:text="${uomEach.description}"
+                                        >
+
+                                            Each
+                                        </option>
                                     </select>
                                 </div>
                             </div>

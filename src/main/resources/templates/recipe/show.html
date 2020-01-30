@@ -75,12 +75,16 @@
                     <div class="panel-heading" style="background-color: #3c763d;" >
 
                         <div class="row">
-                            <div class="col-md-11 ">
+                            <div class="col-md-10 ">
                                 <h1 class="panel-title">Ingredients</h1>
                             </div>
                             <div class="col-md-1">
                                 <a class="btn btn-default" style=" float: right;" href="#"
                                    th:href="@{'/recipe/' + ${recipe.id} + '/ingredients'}" role="button">View</a>
+                            </div>
+                            <div class="col-md-1">
+                                <a class="btn btn-default" style=" float: right;" href="#"
+                                   th:href="@{'/recipe/' + ${recipe.id} + '/ingredient/new'}" role="button">Add</a>
                             </div>
                         </div>
                     </div>
