@@ -83,13 +83,8 @@ public class RecipeController {
     @GetMapping("recipe/{id}/update")
     public String updateRecipe(@PathVariable String id, Model model){
         RecipeCommand recipeCommand = recipeService.findCommandById(Long.valueOf(id));
-        if (ingredientService.getIngredient() != null && ingredientService.getIngredient().size() > 0){
-            ingredientService.getIngredient()
-                    .forEach((Ingredient ingredient) -> recipeCommand.getIngredients()
-                            .add(ingredientToIngredientCommand.convert(ingredient)));
-        }
-        recipeCommand.setCategoryCommand(recipeCommand.getCategoryCommand());
-        recipeCommand.setCategories(categoryService.getCommandCategories());
+
+        recipeCommand.setFlag(false);
         model.addAttribute("recipe",recipeCommand);
         return  "recipe/recipeform";
     }

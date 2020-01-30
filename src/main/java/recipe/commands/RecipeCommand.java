@@ -37,7 +37,6 @@ public class RecipeCommand {
     private CategoryCommand categoryCommand;
     private String commndCat;
     private Set<CategoryCommand> categories = new HashSet<>();
-  //  private String[] selectedCategories;
 
     private boolean flag;
 
@@ -50,26 +49,6 @@ public class RecipeCommand {
         }
         return categoryCommand;
     }
-
-    /* public Set<CategoryCommand> getSelectedCategory(){
-        CategoryCommand cmd ;
-       *//* if(null != this.selectedCategories){
-            for(String commanCategoryId: selectedCategories){
-                cmd = new CategoryCommand();
-                cmd.setId(Long.parseLong(commanCategoryId));
-                categories.add(cmd );
-            }
-        }*//*
-       // log.info("Selected Categories are " +selectedCategories);
-        if(null != this.selectedCategories) {
-            for (int i = 0; i < selectedCategories.length; i++) {
-                cmd = new CategoryCommand();
-                cmd.setId(Long.parseLong(selectedCategories[i]));
-                categories.add(cmd);
-            }
-        }
-      return categories;
-    }*/
 
 
 }
