@@ -5,9 +5,8 @@
 
 package recipe.domain;
 
+import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,11 +15,10 @@ import javax.persistence.OneToOne;
 import java.math.BigDecimal;
 
 
-@Setter
-@Getter
+@Data
 @EqualsAndHashCode(exclude = {"recipe"})
 @Entity
-public class Ingredient extends Base{
+public class Ingredient extends Base {
 
     private String description;
     private BigDecimal amount;

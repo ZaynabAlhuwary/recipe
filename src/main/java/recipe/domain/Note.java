@@ -5,22 +5,22 @@
 
 package recipe.domain;
 
-import lombok.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 
-@Getter
-@Setter
+@Data
 @EqualsAndHashCode(exclude = {"recipe"})
 @Entity
-public class Note extends Base{
+public class Note extends Base {
 
     @Lob
     private String recipeNotes;
 
-    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Recipe recipe;
 

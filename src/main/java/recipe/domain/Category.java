@@ -5,17 +5,17 @@
 
 package recipe.domain;
 
-import lombok.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-import javax.persistence.*;
-import java.util.HashSet;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import java.util.Set;
 
 /**
- * @author  Zaynab osama
+ * @author Zaynab osama
  */
-@Getter
-@Setter
+@Data
 @EqualsAndHashCode(exclude = {"recipes"})
 @Entity
 public class Category extends Base {
@@ -24,7 +24,7 @@ public class Category extends Base {
     private String description;
 
     @OneToMany(mappedBy = "category")
-    private Set<Recipe> recipes ;
+    private Set<Recipe> recipes;
 
 
 }
