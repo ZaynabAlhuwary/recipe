@@ -1,13 +1,15 @@
 package recipe.converters;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import recipe.commands.RecipeCommand;
 import recipe.domain.*;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 public class RecipeToRecipeCommandTest {
 
@@ -20,7 +22,7 @@ public class RecipeToRecipeCommandTest {
 
     RecipeToRecipeCommand recipeToRecipeCommand;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         recipeToRecipeCommand = new RecipeToRecipeCommand(categoryConveter,ingredientConverter,notesConverter);
