@@ -63,7 +63,7 @@ private  List<Recipe> loadData() {
         Optional<UnitOfMeasure> cup= unitOfMeasureService.findByUom("Cup");
 
         //Categories
-        Optional<Category> Egyption =categoryService.findByDescription("Egyption");
+        Optional<Category> Egyption =categoryService.findByDescription("Egyptian");
         Optional<Category> Italian =categoryService.findByDescription("Italian");
         Optional<Category> FastFood =categoryService.findByDescription("Fast Food");
         Optional<Category> American=categoryService.findByDescription("American");

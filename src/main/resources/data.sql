@@ -1,4 +1,4 @@
-INSERT INTO Category(description) VALUES ('Egyption')
+INSERT INTO Category(description) VALUES ('Egyptian')
 INSERT INTO Category(description) VALUES ('American')
 INSERT INTO Category(description) VALUES ('Italian')
 INSERT INTO Category(description) VALUES ('Fast Food')

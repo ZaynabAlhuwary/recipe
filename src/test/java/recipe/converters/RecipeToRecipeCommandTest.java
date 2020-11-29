@@ -26,7 +26,6 @@ public class RecipeToRecipeCommandTest {
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         recipeToRecipeCommand = new RecipeToRecipeCommand(categoryConveter,ingredientConverter,notesConverter);
-
     }
 
 
