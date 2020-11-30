@@ -19,7 +19,6 @@ import recipe.repositories.RecipeRepository;
 import recipe.repositories.UnitOfMeasureRepository;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -42,18 +41,18 @@ public class IngredientServiceImpl implements IngredientService {
     }
 
     @Override
-    public void saveIngredient(Ingredient ingredient){
+    public void saveIngredient(Ingredient ingredient) {
         this.ingredientRepository.save(ingredient);
     }
 
     @Override
-    public  Optional<Ingredient> getIngredientById(Long id){
+    public Optional<Ingredient> getIngredientById(Long id) {
         Optional<Ingredient> ingredient = ingredientRepository.findById(id);
         return ingredient;
     }
 
     @Override
-    public Set<Ingredient> getIngredient(){
+    public Set<Ingredient> getIngredient() {
         Set<Ingredient> ingredients = new HashSet<Ingredient>();
         ingredientRepository.findAll().iterator().forEachRemaining(ingredients::add);
         return ingredients;
@@ -64,23 +63,27 @@ public class IngredientServiceImpl implements IngredientService {
 
         Optional<Recipe> recipeOptional = recipeRepository.findById(recipeId);
 
-        if (!recipeOptional.isPresent()){
-            log.error("recipe id not found. Id: " + recipeId);
+        if (!recipeOptional.isPresent()) {
+            final String errorMsg = String.format("%s%s", "recipe id not found. Id: ", recipeId.toString());
+            log.error(errorMsg);
+            throw new NotFoundException(errorMsg);
         }
 
         Recipe recipe = recipeOptional.get();
 
         Optional<IngredientCommand> ingredientCommandOptional = recipe.getIngredients().stream()
                 .filter(ingredient -> ingredient.getId().equals(ingredientId))
-                .map( ingredient -> ingredientToIngredientCommand.convert(ingredient)).findFirst();
+                .map(ingredient -> ingredientToIngredientCommand.convert(ingredient)).findFirst();
 
-        if(!ingredientCommandOptional.isPresent()){
-            log.error("Ingredient id not found: " + ingredientId);
+        if (!ingredientCommandOptional.isPresent()) {
+                final String errorMsg = String.format("%s%s","Ingredient id not found: " ,ingredientId.toString());
+                log.error(errorMsg);
+                throw new NotFoundException(errorMsg);
         }
 
         IngredientCommand ingredientCommand = ingredientCommandOptional.get();
         ingredientCommand.setRecipeId(recipeId);
-        return  ingredientCommand;
+        return ingredientCommand;
     }
 
 
@@ -89,7 +92,7 @@ public class IngredientServiceImpl implements IngredientService {
     public IngredientCommand saveIngredientCommand(IngredientCommand command) {
         Optional<Recipe> recipeOptional = recipeRepository.findById(command.getRecipeId());
 
-        if(!recipeOptional.isPresent()){
+        if (!recipeOptional.isPresent()) {
             log.error("Recipe not found for id: " + command.getRecipeId());
             return new IngredientCommand();
         } else {
@@ -101,17 +104,17 @@ public class IngredientServiceImpl implements IngredientService {
                     .filter(ingredient -> ingredient.getId().equals(command.getId()))
                     .findFirst();
 
-                if(ingredientOptional.isPresent()){
-                    // Update The Ingredient Data.
-                    Ingredient ingredientFound = ingredientOptional.get();
-                    ingredientFound.setDescription(command.getDescription());
-                    ingredientFound.setAmount(command.getAmount());
-                } else {
-                    //Add new Ingredient
-                    Ingredient ingredient = ingredientCommandToIngredient.convert(command);
-                    ingredient.setRecipe(recipe);
-                    recipe.addIngredient(ingredient);
-                }
+            if (ingredientOptional.isPresent()) {
+                // Update The Ingredient Data.
+                Ingredient ingredientFound = ingredientOptional.get();
+                ingredientFound.setDescription(command.getDescription());
+                ingredientFound.setAmount(command.getAmount());
+            } else {
+                //Add new Ingredient
+                Ingredient ingredient = ingredientCommandToIngredient.convert(command);
+                ingredient.setRecipe(recipe);
+                recipe.addIngredient(ingredient);
+            }
 
             Recipe savedRecipe = recipeRepository.save(recipe);
 
@@ -119,7 +122,7 @@ public class IngredientServiceImpl implements IngredientService {
                     .filter(recipeIngredients -> recipeIngredients.getDescription().equals(command.getDescription()))
                     .findFirst();
 
-            if(!savedIngredientOptional.isPresent()){
+            if (!savedIngredientOptional.isPresent()) {
                 savedIngredientOptional = savedRecipe.getIngredients().stream()
                         .filter(recipeIngredients -> recipeIngredients.getDescription().equals(command.getDescription()))
                         .filter(recipeIngredients -> recipeIngredients.getAmount().equals(command.getAmount()))
@@ -129,7 +132,7 @@ public class IngredientServiceImpl implements IngredientService {
             }
 
 
-            IngredientCommand  ingredientCommand = ingredientToIngredientCommand.convert(savedIngredientOptional.get());
+            IngredientCommand ingredientCommand = ingredientToIngredientCommand.convert(savedIngredientOptional.get());
             ingredientCommand.setRecipeId(savedRecipe.getId());
             return ingredientCommand;
         }
@@ -143,8 +146,10 @@ public class IngredientServiceImpl implements IngredientService {
 
         Optional<Recipe> recipeOptional = recipeRepository.findById(recipeId);
 
-        if(!recipeOptional.isPresent()){
-            throw new NotFoundException("Recipe Id Not found. Id:" + recipeId);
+        if (!recipeOptional.isPresent()) {
+            final String errorMsg = String.format("%s%s","Recipe id not found: " ,recipeId.toString());
+            log.error(errorMsg);
+            throw new NotFoundException(errorMsg);
         }
         Recipe recipe = recipeOptional.get();
 
@@ -154,8 +159,10 @@ public class IngredientServiceImpl implements IngredientService {
                 .filter(ingredient -> ingredient.getId().equals(idToDelete))
                 .findFirst();
 
-        if(!ingredientOptional.isPresent()){
-            throw new NotFoundException("Ingredient Not Found With This Id "+idToDelete);
+        if (!ingredientOptional.isPresent()) {
+            final String errorMsg = String.format("%s%s","Ingredient Not Found With This Id " ,idToDelete.toString());
+            log.error(errorMsg);
+            throw new NotFoundException(errorMsg);
         }
 
         Ingredient ingredientToDelete = ingredientOptional.get();
