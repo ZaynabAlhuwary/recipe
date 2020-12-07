@@ -1,4 +1,1 @@
-FROM openjdk:8
-ADD target/recipe.jar recipe.jar
-EXPOSE 8080
-ENTRYPOINT ["java","-jar","recipe.jar"]
+FROM openjdkADD target/recipe.jar recipe.jarRUN sh -c 'touch recipe.jar'ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","recipe.jar"]
