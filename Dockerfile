@@ -1,1 +1,1 @@
-FROM openjdkADD target/recipe.jar recipe.jarRUN sh -c 'touch recipe.jar'ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","recipe.jar"]
+FROM openjdkADD target/recipe.jar recipe.jarEXPOSE 8080CMD [ "run", "--host=127.0.0.1" ]RUN sh -c 'touch recipe.jar'ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","recipe.jar"]
