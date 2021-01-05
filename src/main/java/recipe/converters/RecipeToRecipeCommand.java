@@ -10,7 +10,6 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 import recipe.commands.RecipeCommand;
-import recipe.domain.Category;
 import recipe.domain.Ingredient;
 import recipe.domain.Recipe;
 
@@ -31,27 +30,30 @@ public class RecipeToRecipeCommand implements Converter<Recipe, RecipeCommand> {
     @Nullable
     @Override
     public RecipeCommand convert(Recipe recipe) {
-       if(null == recipe){
-           return null;
-       }
+        if (null == recipe) {
+            return null;
+        }
 
-       final RecipeCommand recipeCommand = new RecipeCommand();
-       recipeCommand.setId(recipe.getId());
-       recipeCommand.setDescription(recipe.getDescription());
-       recipeCommand.setDirections(recipe.getDirections());
-       recipeCommand.setDifficulty(recipe.getDifficulty());
-       recipeCommand.setCategoryCommand(categoryConveter.convert(recipe.getCategory()));
-       recipeCommand.setFlag(recipe.isFlag());
-       if(recipe.getIngredients() !=null  && recipe.getIngredients().size()>0){
+        final RecipeCommand recipeCommand = new RecipeCommand();
+        recipeCommand.setId(recipe.getId());
+        recipeCommand.setDescription(recipe.getDescription());
+        recipeCommand.setDirections(recipe.getDirections());
+        recipeCommand.setDifficulty(recipe.getDifficulty());
+        if (null != recipe.getCategory()) {
+            recipeCommand.setCategoryCommand(categoryConveter.convert(recipe.getCategory()));
+            recipeCommand.setCommandCat((recipe.getCategory()).getDescription());
+        }
+        recipeCommand.setFlag(recipe.isFlag());
+        if (recipe.getIngredients() != null && recipe.getIngredients().size() > 0) {
 
-           recipe.getIngredients().forEach((Ingredient ingredient)-> recipeCommand.getIngredients()
-                   .add(ingredientConverter.convert(ingredient)));
-       }
-       recipeCommand.setCookTime(recipe.getCookTime());
-       recipeCommand.setPrepTime(recipe.getPrepTime());
-       recipeCommand.setUrl(recipe.getUrl());
-       recipeCommand.setNote(notesConverter.convert(recipe.getNote()));
+            recipe.getIngredients().forEach((Ingredient ingredient) -> recipeCommand.getIngredients()
+                    .add(ingredientConverter.convert(ingredient)));
+        }
+        recipeCommand.setCookTime(recipe.getCookTime());
+        recipeCommand.setPrepTime(recipe.getPrepTime());
+        recipeCommand.setUrl(recipe.getUrl());
+        recipeCommand.setNote(notesConverter.convert(recipe.getNote()));
 
-       return recipeCommand;
+        return recipeCommand;
     }
 }
