@@ -1,0 +1,1 @@
+/*package recipe.repositories.reactiveRepos;import org.springframework.data.r2dbc.repository.R2dbcRepository;import reactor.core.publisher.Mono;import recipe.domain.M_UOM;public interface UnitOfMeasureReactiveRepository extends R2dbcRepository<M_UOM, Long> {    Mono<M_UOM> findByUom(String uom);    Mono<M_UOM> findById(Long Id);}*/

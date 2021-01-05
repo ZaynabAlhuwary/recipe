@@ -29,7 +29,7 @@ public class NotesServiceImpl implements NotesService {
 
     @Override
     public Optional<Note> getNoteById(Long id){
-       return Optional.ofNullable(noteRepository.findById(id).orElseThrow(()->new NotFoundException("Note Not Found with "+id)));
+       return Optional.ofNullable(noteRepository.findById(id).orElseThrow(()->new NotFoundException("M_Note Not Found with "+id)));
     }
 
     @Override

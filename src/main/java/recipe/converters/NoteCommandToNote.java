@@ -13,13 +13,13 @@ import recipe.commands.NoteCommand;
 import recipe.domain.Note;
 
 @Component
-public class NoteCommandToNote implements Converter<NoteCommand,Note>{
+public class NoteCommandToNote implements Converter<NoteCommand, Note> {
 
     @Synchronized
     @Nullable
     @Override
     public Note convert(NoteCommand noteCmd) {
-        if(null==noteCmd){
+        if (null == noteCmd) {
             return null;
         }
         final Note note = new Note();

@@ -7,12 +7,15 @@ package recipe.domain;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 
-@Data
+@Getter
+@Setter
 @EqualsAndHashCode(exclude = {"recipe"})
 @Entity
 public class Note extends Base {

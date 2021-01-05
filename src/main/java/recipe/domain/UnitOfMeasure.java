@@ -5,10 +5,10 @@
 
 package recipe.domain;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
 
 @Entity
-public class UnitOfMeasure extends Base{
+public class UnitOfMeasure extends Base {
 
     private String uom;
 

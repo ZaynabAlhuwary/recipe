@@ -1,0 +1,1 @@
+package recipe.domain.mongo;import lombok.Data;import org.springframework.data.mongodb.core.mapping.Document;@Document@Datapublic class M_UOM extends Base {    private String uom;    public M_UOM() {    }    public M_UOM(String uom) {        this.uom = uom;    }}

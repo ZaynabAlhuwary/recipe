@@ -1,0 +1,1 @@
+package recipe.domain.mongo;import lombok.Getter;import lombok.Setter;import org.springframework.data.mongodb.core.mapping.Document;@Getter@Setter@Documentpublic class M_Note extends Base {    private String recipeNotes;    public M_Note(String recipeNotes) {        this.recipeNotes = recipeNotes;    }}
